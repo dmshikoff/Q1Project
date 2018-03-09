@@ -341,8 +341,10 @@ const hit = document.querySelector(".hit")
 const stand = document.querySelector(".stand")
 const drawCard = document.querySelector(".draw")
 const playerTotal = document.querySelector(".player-total")
+const dealerTotal = document.querySelector(".dealer-total")
 const hitButton = document.querySelector(".actionHit")
 const standButton = document.querySelector(".actionStand")
+const result = document.querySelector(".result")
 
 
 // ************ Click events for Hit and Stand ************ //
@@ -356,17 +358,32 @@ hit.addEventListener("click", function(event){
   img.setAttribute("data", newCard.points)
   playerTray.appendChild(img)
   playerTotal.innerHTML = playerPointTotal(playerTray.children)
+  if(Number(playerTotal.innerHTML) === 21){
+    result.innerHTML = "Player Blackjack!"
+    hitButton.classList.add("d-none")
+    standButton.classList.add("d-none")
+    drawCard.classList.remove("d-none")
+  }
+  else if(Number(playerTotal.innerHTML) > 21){
+    result.innerHTML = "Player Bust"
+    hitButton.classList.add("d-none")
+    standButton.classList.add("d-none")
+    drawCard.classList.remove("d-none")
+  }
 })
 
-stand.addEventListener("click", function(event){
-  
-})
+// stand.addEventListener("click", function(event){
+//   if(dealerTotal < 17 || dealerTotal )
+// })
 
 
 // ************ Click event for Deal Cards ************ //
 
 
 drawCard.addEventListener("click", function(event){
+  playerTray.innerHTML = ""
+  result.innerHTML = ""
+  dealerTray.innerHTML = ""
   let newCard1 = shuffledDeck.splice(shuffledDeck.length - 1, 1)[0]
   let newCard2 = shuffledDeck.splice(shuffledDeck.length - 2, 1)[0]
   let card1 = document.createElement("img")
@@ -391,9 +408,15 @@ drawCard.addEventListener("click", function(event){
   }
   hitButton.classList.remove("d-none")
   standButton.classList.remove("d-none")
-  playerTotal.innerHTML = 0
   playerTotal.innerHTML = playerPointTotal(playerTray.children)
+  if(Number(playerTotal.innerHTML) === 21){
+    result.innerHTML = "Player Blackjack!"
+    hitButton.classList.add("d-none")
+    standButton.classList.add("d-none")
+    drawCard.classList.remove("d-none")
+  }
 })
+
 
 
 // ************ Display Player Card Total ************ //
