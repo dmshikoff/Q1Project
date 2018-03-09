@@ -313,11 +313,21 @@ const cardDeck = [
   }
 ]
 
+function randomNumber(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function shuffle(array){
+  let shuffledDeck = []
+  while(array.length !== 0){
+    const randomCard = array.splice(randomNumber(0, array.length - 1), 1)
+    shuffledDeck.push(randomCard)
+  }
+  return shuffledDeck
+}
+
 let dCard1 = document.querySelector(".dCard1")
 let dCard2 = document.querySelector(".dCard2")
 let dealerTray = document.querySelector(".dealer-tray")
-
-
-
-dCard1.setAttribute("src", cardDeck[0].img)
-dCard2.setAttribute("src", cardDeck[4].img)
