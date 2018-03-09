@@ -1,0 +1,45 @@
+.table-cont {
+background: #31663C;
+height: 100vh;
+}
+
+.row {
+  font-family: 'Lobster', cursive;
+  font-weight: bold;
+  height: 33.3vh;
+}
+
+.dealer-col {
+  text-align: center;
+}
+
+.title-col {
+  text-align: center;
+  color: yellow;
+  font-size: 40pt;
+}
+
+.deck-col {
+  text-align: center;
+}
+
+.player-col {
+  text-align: center;
+}
+
+img {
+  height: 150px;
+  width: 100px;
+  margin: 0 15px;
+}
+
+.actions {
+  font-size: 25px;
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 15px;
+}
+
+p {
+  margin: 0;
+}
