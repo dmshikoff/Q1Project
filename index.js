@@ -1,26 +1,29 @@
+
+// ************ Unshuffed Deck ************ //
+
 const cardDeck = [
   {
     name: "ace",
     suit: "spade",
-    points: [1,11],
+    points: 11,
     img: "AS.jpg"
   },
   {
     name: "ace",
     suit: "heart",
-    points: [1,11],
+    points: 11,
     img: "AH.jpg"
   },
   {
     name: "ace",
     suit: "club",
-    points: [1,11],
+    points: 11,
     img: "AC.jpg"
   },
   {
     name: "ace",
     suit: "diamond",
-    points: [1,11],
+    points: 11,
     img: "AD.jpg"
   },
   {
@@ -313,6 +316,8 @@ const cardDeck = [
   }
 ]
 
+// ************ Function to shuffle deck ************ //
+
 function randomNumber(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -322,12 +327,81 @@ function randomNumber(min, max) {
 function shuffle(array){
   let shuffledDeck = []
   while(array.length !== 0){
-    const randomCard = array.splice(randomNumber(0, array.length - 1), 1)
+    const randomCard = array.splice(randomNumber(0, array.length - 1), 1)[0]
     shuffledDeck.push(randomCard)
   }
   return shuffledDeck
 }
 
-let dCard1 = document.querySelector(".dCard1")
-let dCard2 = document.querySelector(".dCard2")
-let dealerTray = document.querySelector(".dealer-tray")
+const shuffledDeck = shuffle(cardDeck)
+
+const dealerTray = document.querySelector(".dealer-tray")
+const playerTray = document.querySelector(".player-tray")
+const hit = document.querySelector(".hit")
+const stand = document.querySelector(".stand")
+const drawCard = document.querySelector(".draw")
+const playerTotal = document.querySelector(".player-total")
+const hitButton = document.querySelector(".actionHit")
+const standButton = document.querySelector(".actionStand")
+
+
+// ************ Click events for Hit and Stand ************ //
+
+
+
+hit.addEventListener("click", function(event){
+  let img = document.createElement("img")
+  let newCard = (shuffledDeck.pop())
+  img.setAttribute("src", newCard.img)
+  img.setAttribute("data", newCard.points)
+  playerTray.appendChild(img)
+  playerTotal.innerHTML = playerPointTotal(playerTray.children)
+})
+
+stand.addEventListener("click", function(event){
+  
+})
+
+
+// ************ Click event for Deal Cards ************ //
+
+
+drawCard.addEventListener("click", function(event){
+  let newCard1 = shuffledDeck.splice(shuffledDeck.length - 1, 1)[0]
+  let newCard2 = shuffledDeck.splice(shuffledDeck.length - 2, 1)[0]
+  let card1 = document.createElement("img")
+  card1.setAttribute("src", newCard1.img)
+  card1.setAttribute("data", newCard1.points)
+  let card2 = document.createElement("img")
+  card2.setAttribute("src", newCard2.img)
+  card2.setAttribute("data", newCard2.points)
+  let cardBack1 = document.createElement("img")
+  cardBack1.setAttribute("src", "bicycleRed.png")
+  let cardBack2 = document.createElement("img")
+  cardBack2.setAttribute("src", "bicycleRed.png")
+  playerTray.appendChild(card1)
+  playerTray.appendChild(card2)
+  dealerTray.appendChild(cardBack1)
+  dealerTray.appendChild(cardBack2)
+  if(playerTray.childElementCount > 0){
+    drawCard.classList.add("d-none")
+  }
+  else {
+    drawCard.classList.remove("d-none")
+  }
+  hitButton.classList.remove("d-none")
+  standButton.classList.remove("d-none")
+  playerTotal.innerHTML = 0
+  playerTotal.innerHTML = playerPointTotal(playerTray.children)
+})
+
+
+// ************ Display Player Card Total ************ //
+
+function playerPointTotal(array) {
+  let total = 0
+  for(let i of array){
+    total += Number(i.getAttribute("data"))
+  }
+  return total
+}

@@ -33,7 +33,7 @@ img {
   margin: 0 15px;
 }
 
-.actions {
+button {
   font-size: 25px;
   border: 1px solid black;
   border-radius: 30px;

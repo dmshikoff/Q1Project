@@ -15,14 +15,13 @@
       <div class="col dealer-col">
         <h2 class="d-inline-flex">Dealer's Hand</h2>
         <div class="dealer-tray">
-          <img alt="dCard1" class="dCard1">
-          <img alt="dCard2" class="dCard2">
         </div>
       </div>
     </div>
     <div class="row deck-row d-flex justify-content-end">
       <div class="col-4 title-col">
         <p>BlackJack</p>
+        <button type="button" name="draw" class="draw">Deal</button>
       </div>
       <div class="col-4 deck-col">
         <h2>Deck</h2>
@@ -34,19 +33,19 @@
     <div class="row player-row">
       <div class="col player-col">
         <div class="d-inline-flex flex-row align-items-center">
-          <div class="actions">
-            <p>Hit</p>
+          <div class="actionHit d-none">
+            <button type="button" name="hit" class="hit">Hit</button>
           </div>
           <div class="player-tray">
-            <img alt="pCard1" class="pCard1">
-            <img alt="pCard2" class="pCard2">
+
           </div>
-          <div class="actions">
-            <p>Stand</p>
+          <div class="actionStand d-none">
+            <button type="button" name="stand" class="stand">Stand</button>
           </div>
         </div>
         <div>
           <h2 class="d-inline-flex">Player's Hand</h2>
+          <p class="player-total"></p>
         </div>
       </div>
     </div>
