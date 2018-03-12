@@ -1,8 +1,6 @@
-
 // ************ Unshuffed Deck ************ //
 
-const cardDeck = [
-  {
+const cardDeck = [{
     name: "ace",
     suit: "spade",
     points: 11,
@@ -324,9 +322,9 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function shuffle(array){
+function shuffle(array) {
   let shuffledDeck = []
-  while(array.length !== 0){
+  while (array.length !== 0) {
     const randomCard = array.splice(randomNumber(0, array.length - 1), 1)[0]
     shuffledDeck.push(randomCard)
   }
@@ -334,7 +332,6 @@ function shuffle(array){
 }
 
 const shuffledDeck = shuffle(cardDeck)
-
 const dealerTray = document.querySelector(".dealer-tray")
 const playerTray = document.querySelector(".player-tray")
 const hit = document.querySelector(".hit")
@@ -347,84 +344,23 @@ const standButton = document.querySelector(".actionStand")
 const result = document.querySelector(".result")
 
 
-// ************ Click events for Hit and Stand ************ //
+
+// ************ Card Value Totals ************ //
+
+function isAce(element){
+  return element.getAttribute("data-cName") === "ace"
+}
+
+// Array.from(playerTray.children).filter(isAce)
 
 
-
-hit.addEventListener("click", function(event){
-  let img = document.createElement("img")
-  let newCard = (shuffledDeck.pop())
-  img.setAttribute("src", newCard.img)
-  img.setAttribute("data", newCard.points)
-  playerTray.appendChild(img)
-  playerTotal.innerHTML = playerPointTotal(playerTray.children)
-  if(Number(playerTotal.innerHTML) === 21){
-    result.innerHTML = "Player Blackjack!"
-    hitButton.classList.add("d-none")
-    standButton.classList.add("d-none")
-    drawCard.classList.remove("d-none")
-  }
-  else if(Number(playerTotal.innerHTML) > 21){
-    result.innerHTML = "Player Bust"
-    hitButton.classList.add("d-none")
-    standButton.classList.add("d-none")
-    drawCard.classList.remove("d-none")
-  }
-})
-
-// stand.addEventListener("click", function(event){
-//   if(dealerTotal < 17 || dealerTotal )
-// })
-
-
-// ************ Click event for Deal Cards ************ //
-
-
-drawCard.addEventListener("click", function(event){
-  playerTray.innerHTML = ""
-  result.innerHTML = ""
-  dealerTray.innerHTML = ""
-  let newCard1 = shuffledDeck.splice(shuffledDeck.length - 1, 1)[0]
-  let newCard2 = shuffledDeck.splice(shuffledDeck.length - 2, 1)[0]
-  let card1 = document.createElement("img")
-  card1.setAttribute("src", newCard1.img)
-  card1.setAttribute("data", newCard1.points)
-  let card2 = document.createElement("img")
-  card2.setAttribute("src", newCard2.img)
-  card2.setAttribute("data", newCard2.points)
-  let cardBack1 = document.createElement("img")
-  cardBack1.setAttribute("src", "bicycleRed.png")
-  let cardBack2 = document.createElement("img")
-  cardBack2.setAttribute("src", "bicycleRed.png")
-  playerTray.appendChild(card1)
-  playerTray.appendChild(card2)
-  dealerTray.appendChild(cardBack1)
-  dealerTray.appendChild(cardBack2)
-  if(playerTray.childElementCount > 0){
-    drawCard.classList.add("d-none")
-  }
-  else {
-    drawCard.classList.remove("d-none")
-  }
-  hitButton.classList.remove("d-none")
-  standButton.classList.remove("d-none")
-  playerTotal.innerHTML = playerPointTotal(playerTray.children)
-  if(Number(playerTotal.innerHTML) === 21){
-    result.innerHTML = "Player Blackjack!"
-    hitButton.classList.add("d-none")
-    standButton.classList.add("d-none")
-    drawCard.classList.remove("d-none")
-  }
-})
-
-
-
-// ************ Display Player Card Total ************ //
-
-function playerPointTotal(array) {
+function pointTotal(array) {
   let total = 0
-  for(let i of array){
+  for (let i of array) {
     total += Number(i.getAttribute("data"))
   }
+  // if(total > 21 && Array.from(playerTray.children).filter(isAce).length !== 0){
+  //
+  // }
   return total
 }
