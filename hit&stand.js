@@ -1,4 +1,26 @@
-// ************ Click events for Hit and Stand ************ //
+// ************ Sub-Functions for Hit and Stand ************ //
+
+function isAceValue11(element){
+  return Number(element.getAttribute("data")) === 11
+}
+
+function pointTotal(array) {
+  let total = 0
+  for (let i of array) {
+    total += Number(i.getAttribute("data"))
+  }
+  return total
+}
+
+function acesToOne(cards){
+  let total = pointTotal(cards)
+  while(total > 21 && Array.from(cards).filter(isAceValue11).length !== 0){
+    const card = Array.from(cards).filter(isAceValue11)[0]
+    card.setAttribute("data", 1)
+    total = pointTotal(cards)
+  }
+  return total
+}
 
 function endOfHand() {
   hitButton.classList.add("d-none")
@@ -8,17 +30,33 @@ function endOfHand() {
   dealerTray.firstElementChild.setAttribute("src", faceImg)
 }
 
-
-
-
-hit.addEventListener("click", function(event) {
+function hitPlayer() {
   let img = document.createElement("img")
-  let newCard = (shuffledDeck.pop())
+  let newCard = (shuffledSixDecks.pop())
   img.setAttribute("src", newCard.img)
   img.setAttribute("data", newCard.points)
   img.setAttribute("data-cName", newCard.name)
   playerTray.appendChild(img)
-  playerTotal.innerHTML = pointTotal(playerTray.children)
+  let total = acesToOne(playerTray.children)
+  playerTotal.innerHTML = total
+}
+
+function hitDealer() {
+  let img = document.createElement("img")
+  let newCard = (shuffledSixDecks.pop())
+  img.setAttribute("src", newCard.img)
+  img.setAttribute("data", newCard.points)
+  img.setAttribute("data-cName", newCard.name)
+  dealerTray.appendChild(img)
+  let total = acesToOne(dealerTray.children)
+  dealerTotal.innerHTML = total
+}
+
+
+// ************ Hit and Stand ************ //
+
+hit.addEventListener("click", function(event) {
+  hitPlayer()
   if (Number(playerTotal.innerHTML) === 21) {
     result.innerHTML = "Player Wins!!"
     endOfHand()
@@ -30,13 +68,7 @@ hit.addEventListener("click", function(event) {
 
 stand.addEventListener("click", function(event) {
   while(Number(dealerTotal.innerHTML) < 17){
-    let newCard = shuffledDeck.splice(shuffledDeck.length - 1, 1)[0]
-    let dcard = document.createElement("img")
-    dcard.setAttribute("src", newCard.img)
-    dcard.setAttribute("data", newCard.points)
-    dcard.setAttribute("data-cName", newCard.name)
-    dealerTray.appendChild(dcard)
-    dealerTotal.innerHTML = pointTotal(dealerTray.children)
+    hitDealer()
   }
   if(Number(dealerTotal.innerHTML) < Number(playerTotal.innerHTML) && [17,18,19,20].includes(Number(dealerTotal.innerHTML))){
     result.innerHTML = "Player Wins!"

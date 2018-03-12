@@ -331,7 +331,19 @@ function shuffle(array) {
   return shuffledDeck
 }
 
+function sixDecks(array) {
+  let sixDecks = []
+  while(sixDecks.length < 312){
+    sixDecks = sixDecks.concat(array)
+  }
+  return sixDecks
+}
+
+// ************ Global Variables ************ //
+
+
 const shuffledDeck = shuffle(cardDeck)
+const shuffledSixDecks = shuffle(sixDecks(shuffledDeck))
 const dealerTray = document.querySelector(".dealer-tray")
 const playerTray = document.querySelector(".player-tray")
 const hit = document.querySelector(".hit")
@@ -342,25 +354,3 @@ const dealerTotal = document.querySelector(".dealer-total")
 const hitButton = document.querySelector(".actionHit")
 const standButton = document.querySelector(".actionStand")
 const result = document.querySelector(".result")
-
-
-
-// ************ Card Value Totals ************ //
-
-function isAce(element){
-  return element.getAttribute("data-cName") === "ace"
-}
-
-// Array.from(playerTray.children).filter(isAce)
-
-
-function pointTotal(array) {
-  let total = 0
-  for (let i of array) {
-    total += Number(i.getAttribute("data"))
-  }
-  // if(total > 21 && Array.from(playerTray.children).filter(isAce).length !== 0){
-  //
-  // }
-  return total
-}
