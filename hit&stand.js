@@ -25,9 +25,10 @@ function acesToOne(cards){
 function endOfHand() {
   hitButton.classList.add("d-none")
   standButton.classList.add("d-none")
-  drawCard.classList.remove("d-none")
+  form.classList.remove("d-none")
   let faceImg = dealerTray.firstElementChild.getAttribute("data-img")
   dealerTray.firstElementChild.setAttribute("src", faceImg)
+  submittedBet.innerHTML = ""
 }
 
 function hitPlayer() {
@@ -84,6 +85,7 @@ stand.addEventListener("click", function(event) {
   }
   if(Number(dealerTotal.innerHTML) > 21){
     result.innerHTML = "Dealer Busts!!"
+    console.log('Dealer Busts', tokenTotal.innerHTML, Number(betAmount));
     tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
     endOfHand()
   }

@@ -79,7 +79,6 @@ form.addEventListener("submit", function(event) {
   event.preventDefault()
   betAmount = betInput.value
   form.classList.add("d-none")
-  let submittedBet = document.createElement("p")
   submittedBet.innerHTML = "Your Bet: " + betAmount
   betCol.appendChild(submittedBet)
   drawCard.classList.remove("d-none")
