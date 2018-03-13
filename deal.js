@@ -2,7 +2,7 @@
 
 
 function deal(tray, total, faceDown){
-  let persistingDeck = JSON.parse(localStorage.getItem("myDeck")) ? JSON.parse(localStorage.getItem("myDeck")) : shuffledSixDeck;
+  let persistingDeck = JSON.parse(localStorage.getItem("myDeck")) ? JSON.parse(localStorage.getItem("myDeck")) : shuffledSixDecks;
   let newCard = (persistingDeck.pop())
   const myDeck = JSON.stringify(persistingDeck)
   localStorage.setItem("myDeck", myDeck)
@@ -32,7 +32,7 @@ document.querySelector(".draw").addEventListener("click", function(event) {
   const drawCard = document.querySelector(".draw")
   const hitButton = document.querySelector(".actionHit")
   const standButton = document.querySelector(".actionStand")
-  const tokenTotal = document.querySelector(".token-total")
+  const tokenTotal = document.querySelector(".odometer")
   const result = document.querySelector(".result")
   clear(playerTray, result, dealerTray)
   deal(playerTray, playerTotal, false)
@@ -67,7 +67,7 @@ document.querySelector(".draw").addEventListener("click", function(event) {
 let betAmount;
 
 document.querySelector(".bet-submission").addEventListener("submit", function(event) {
-  const tokenTotal = document.querySelector(".token-total")
+  const tokenTotal = document.querySelector(".odometer")
   event.preventDefault()
   betAmount = document.querySelector(".bet-input").value
   document.querySelector(".bet-submission").classList.add("d-none")

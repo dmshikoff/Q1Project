@@ -7,8 +7,9 @@
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="slotTheme.css" />
-  <script defer src="odometer.js"></script>
+  <!-- <link rel="stylesheet" href="slotTheme.css" /> -->
+  <!-- <script defer src="odometer.js"></script> -->
+  <link rel="stylesheet" href="casino.css">
   <link rel="stylesheet" href="style.css">
   <script defer type="text/javascript" src="deck.js"></script>
   <script defer type="text/javascript" src="deal.js"></script>
@@ -29,7 +30,6 @@
     <div class="row deck-row d-flex justify-content-end">
       <div class="col-4 bet-col">
         <p>Blackjack pays 3:2</p>
-        <p>Player Token Total: <span class="token-total"></span></p>
         <form class="bet-submission">
           <label>Bet Amount:
             <input type="number" name="bet-value" min="1" class="bet-input">
@@ -68,12 +68,12 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="col-10 ui-bar d-flex justify-content-between">
+      <div class="col-10 ui-bar d-flex justify-content-between align-items-center">
         <div>
           <p>Chips</p>
         </div>
         <div>
-          <p class="odometer">300</p>
+          <p id="odometer" class="token-total odometer"></p>
         </div>
         <div>
           <button type="button" class="btn btn-primary" data-toggle="modal" href="#helpModal">Help</button>

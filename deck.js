@@ -347,6 +347,6 @@ const playerTray = document.querySelector(".player-tray")
 const playerTotal = document.querySelector(".player-total")
 const dealerTotal = document.querySelector(".dealer-total")
 
-document.querySelector(".token-total").innerHTML = JSON.parse(localStorage.getItem("myTokens")) ? JSON.parse(localStorage.getItem("myTokens")) : 500;
+document.querySelector(".odometer").innerHTML = JSON.parse(localStorage.getItem("myTokens")) ? JSON.parse(localStorage.getItem("myTokens")) : 500;
 
-document.querySelector(".bet-input").setAttribute("max", document.querySelector(".token-total").innerHTML)
+document.querySelector(".bet-input").setAttribute("max", document.querySelector(".odometer").innerHTML)

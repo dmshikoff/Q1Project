@@ -66,3 +66,8 @@ button {
 p {
   margin: 0;
 }
+
+.token-total {
+  font-family: 'Casino Queen Normal';
+  font-size: 30pt;
+}
