@@ -29,6 +29,7 @@ function endOfHand() {
   let faceImg = dealerTray.firstElementChild.getAttribute("data-img")
   dealerTray.firstElementChild.setAttribute("src", faceImg)
   submittedBet.innerHTML = ""
+  betInput.setAttribute("max", tokenTotal.innerHTML)
 }
 
 function hitPlayer() {
@@ -78,14 +79,13 @@ stand.addEventListener("click", function(event) {
     tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
     endOfHand()
   }
-  if(Number(dealerTotal.innerHTML) > Number(playerTotal.innerHTML) && [Number(dealerTotal.innerHTML) < 21]){
+  if(Number(dealerTotal.innerHTML) > Number(playerTotal.innerHTML) && Number(dealerTotal.innerHTML) < 21){
     result.innerHTML = "Dealer Wins!!"
     tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - Number(betAmount)
     endOfHand()
   }
   if(Number(dealerTotal.innerHTML) > 21){
     result.innerHTML = "Dealer Busts!!"
-    console.log('Dealer Busts', tokenTotal.innerHTML, Number(betAmount));
     tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
     endOfHand()
   }
