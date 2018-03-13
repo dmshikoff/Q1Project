@@ -1,4 +1,4 @@
-// ************ Sub-Functions for Hit and Stand ************ //
+// ************ Sub-Functions for Hitting and Standing ************ //
 
 function isAceValue11(element){
   return Number(element.getAttribute("data")) === 11
@@ -23,6 +23,13 @@ function acesToOne(cards){
 }
 
 function endOfHand() {
+  const hitButton = document.querySelector(".actionHit")
+  const standButton = document.querySelector(".actionStand")
+  const form = document.querySelector(".bet-submission")
+  const dealerTray = document.querySelector(".dealer-tray")
+  const submittedBet = document.querySelector(".sub-bet")
+  const betInput = document.querySelector(".bet-input")
+  const tokenTotal = document.querySelector(".token-total")
   hitButton.classList.add("d-none")
   standButton.classList.add("d-none")
   form.classList.remove("d-none")
@@ -32,33 +39,25 @@ function endOfHand() {
   betInput.setAttribute("max", tokenTotal.innerHTML)
 }
 
-function hitPlayer() {
+function hit(tray, total) {
   let img = document.createElement("img")
   let newCard = (shuffledSixDecks.pop())
   img.setAttribute("src", newCard.img)
   img.setAttribute("data", newCard.points)
   img.setAttribute("data-cName", newCard.name)
-  playerTray.appendChild(img)
-  let total = acesToOne(playerTray.children)
-  playerTotal.innerHTML = total
+  tray.appendChild(img)
+  let pointTotal = acesToOne(tray.children)
+  total.innerHTML = pointTotal
 }
 
-function hitDealer() {
-  let img = document.createElement("img")
-  let newCard = (shuffledSixDecks.pop())
-  img.setAttribute("src", newCard.img)
-  img.setAttribute("data", newCard.points)
-  img.setAttribute("data-cName", newCard.name)
-  dealerTray.appendChild(img)
-  let total = acesToOne(dealerTray.children)
-  dealerTotal.innerHTML = total
-}
 
 
 // ************ Hit and Stand ************ //
 
-hit.addEventListener("click", function(event) {
-  hitPlayer()
+document.querySelector(".hit").addEventListener("click", function(event) {
+  const result = document.querySelector(".result")
+  const tokenTotal = document.querySelector(".token-total")
+  hit(playerTray, playerTotal)
   if (Number(playerTotal.innerHTML) === 21) {
     result.innerHTML = "Player Wins!!"
     tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
@@ -70,9 +69,11 @@ hit.addEventListener("click", function(event) {
   }
 })
 
-stand.addEventListener("click", function(event) {
+document.querySelector(".stand").addEventListener("click", function(event) {
+  const result = document.querySelector(".result")
+  const tokenTotal = document.querySelector(".token-total")
   while(Number(dealerTotal.innerHTML) < 17){
-    hitDealer()
+    hit(dealerTray, dealerTotal)
   }
   if(Number(dealerTotal.innerHTML) < Number(playerTotal.innerHTML) && [17,18,19,20].includes(Number(dealerTotal.innerHTML))){
     result.innerHTML = "Player Wins!!"

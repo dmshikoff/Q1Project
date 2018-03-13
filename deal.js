@@ -1,51 +1,40 @@
 // ************ Sub-Functions for Click event for Deal Cards ************ //
 
-function dealPlayerCard() {
+function deal(tray, total, faceDown){
   let newCard = (shuffledSixDecks.pop())
-  let pcard = document.createElement("img")
-  pcard.setAttribute("src", newCard.img)
-  pcard.setAttribute("data", newCard.points)
-  pcard.setAttribute("data-cName", newCard.name)
-  playerTray.appendChild(pcard)
-  playerTotal.innerHTML = pointTotal(playerTray.children)
+  let card = document.createElement("img")
+  if(faceDown){
+    card.setAttribute("src", "bicycleRed.png")
+    card.setAttribute("data-img", newCard.img)
+  }
+  else {
+    card.setAttribute("src", newCard.img)
+  }
+  card.setAttribute("data", newCard.points)
+  card.setAttribute("data-cName", newCard.name)
+  tray.appendChild(card)
+  total.innerHTML = pointTotal(tray.children)
 }
 
-function dealDealerCard() {
-  let newCard = (shuffledSixDecks.pop())
-  let dcard = document.createElement("img")
-  dcard.setAttribute("src", newCard.img)
-  dcard.setAttribute("data", newCard.points)
-  dcard.setAttribute("data-cName", newCard.name)
-  dealerTray.appendChild(dcard)
-  dealerTotal.innerHTML = pointTotal(dealerTray.children)
-}
-
-function dealDealerCardback() {
-  let newCard = (shuffledSixDecks.pop())
-  let cardBack = document.createElement("img")
-  cardBack.setAttribute("src", "bicycleRed.png")
-  cardBack.setAttribute("data-img", newCard.img)
-  cardBack.setAttribute("data", newCard.points)
-  cardBack.setAttribute("data-cName", newCard.name)
-  dealerTray.appendChild(cardBack)
-  dealerTotal.innerHTML = pointTotal(dealerTray.children)
-}
-
-function clearTotals() {
-  playerTray.innerHTML = ""
-  result.innerHTML = ""
-  dealerTray.innerHTML = ""
+function clear(){
+  for(const e in arguments)
+    arguments[e].innerHTML = ''
 }
 
 
 // ************ Click event for Deal Cards ************ //
 
-drawCard.addEventListener("click", function(event) {
-  clearTotals()
-  dealPlayerCard()
-  dealDealerCardback()
-  dealPlayerCard()
-  dealDealerCard()
+document.querySelector(".draw").addEventListener("click", function(event) {
+  const drawCard = document.querySelector(".draw")
+  const hitButton = document.querySelector(".actionHit")
+  const standButton = document.querySelector(".actionStand")
+  const tokenTotal = document.querySelector(".token-total")
+  const result = document.querySelector(".result")
+  clear(playerTray, result, dealerTray)
+  deal(playerTray, playerTotal, false)
+  deal(dealerTray, dealerTotal, true)
+  deal(playerTray, playerTotal, false)
+  deal(dealerTray, dealerTotal, false)
   if (playerTray.childElementCount > 0) {
     drawCard.classList.add("d-none")
   }
@@ -73,13 +62,15 @@ drawCard.addEventListener("click", function(event) {
 
 let betAmount;
 
-betInput.setAttribute("max", tokenTotal.innerHTML)
 
-form.addEventListener("submit", function(event) {
+
+document.querySelector(".bet-submission").addEventListener("submit", function(event) {
+  const tokenTotal = document.querySelector(".token-total")
   event.preventDefault()
-  betAmount = betInput.value
-  form.classList.add("d-none")
-  submittedBet.innerHTML = "Your Bet: " + betAmount
-  betCol.appendChild(submittedBet)
-  drawCard.classList.remove("d-none")
+  betAmount = document.querySelector(".bet-input").value
+  document.querySelector(".bet-submission").classList.add("d-none")
+  document.querySelector(".sub-bet").innerHTML = "Your Bet: " + betAmount
+  document.querySelector(".bet-col").appendChild(document.querySelector(".sub-bet"))
+  document.querySelector(".draw").classList.remove("d-none")
+  document.querySelector(".bet-input").setAttribute("max", tokenTotal.innerHTML)
 })
