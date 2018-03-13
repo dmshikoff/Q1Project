@@ -59,9 +59,11 @@ hit.addEventListener("click", function(event) {
   hitPlayer()
   if (Number(playerTotal.innerHTML) === 21) {
     result.innerHTML = "Player Wins!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
     endOfHand()
   } else if (Number(playerTotal.innerHTML) > 21) {
-    result.innerHTML = "Player Bust"
+    result.innerHTML = "Player Bust!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - Number(betAmount)
     endOfHand()
   }
 })
@@ -71,19 +73,23 @@ stand.addEventListener("click", function(event) {
     hitDealer()
   }
   if(Number(dealerTotal.innerHTML) < Number(playerTotal.innerHTML) && [17,18,19,20].includes(Number(dealerTotal.innerHTML))){
-    result.innerHTML = "Player Wins!"
+    result.innerHTML = "Player Wins!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
     endOfHand()
   }
   if(Number(dealerTotal.innerHTML) > Number(playerTotal.innerHTML) && [Number(dealerTotal.innerHTML) < 21]){
     result.innerHTML = "Dealer Wins!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - Number(betAmount)
     endOfHand()
   }
   if(Number(dealerTotal.innerHTML) > 21){
     result.innerHTML = "Dealer Busts!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
     endOfHand()
   }
   if(Number(dealerTotal.innerHTML) === Number(playerTotal.innerHTML)){
-    result.innerHTML = "Push!"
+    result.innerHTML = "Push!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML)
     endOfHand()
   }
 })

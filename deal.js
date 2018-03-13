@@ -55,12 +55,32 @@ drawCard.addEventListener("click", function(event) {
   hitButton.classList.remove("d-none")
   standButton.classList.remove("d-none")
   if (Number(playerTotal.innerHTML) === 21) {
-    result.innerHTML = "Player Blackjack!"
+    result.innerHTML = "Player Blackjack!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + (Number(betAmount)*1.5)
     endOfHand()
   } else if (Number(dealerTotal.innerHTML) === 21 && Number(playerTotal.innerHTML) !== 21) {
-    result.innerHTML = "Dealer Blackjack!"
+    result.innerHTML = "Dealer Blackjack!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - Number(betAmount)
     endOfHand()
   } else if (Number(dealerTotal.innerHTML) === 21 && Number(playerTotal.innerHTML) === 21) {
+    result.innerHTML = "Push!!"
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML)
     endOfHand()
   }
+})
+
+// ************ Betting Functionality ************ //
+
+let betAmount;
+
+betInput.setAttribute("max", tokenTotal.innerHTML)
+
+form.addEventListener("submit", function(event) {
+  event.preventDefault()
+  betAmount = betInput.value
+  form.classList.add("d-none")
+  let submittedBet = document.createElement("p")
+  submittedBet.innerHTML = "Your Bet: " + betAmount
+  betCol.appendChild(submittedBet)
+  drawCard.classList.remove("d-none")
 })

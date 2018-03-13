@@ -23,8 +23,16 @@ height: 100vh;
   text-align: center;
 }
 
-.player-col {
+.player-container {
   text-align: center;
+}
+
+.player-title-line {
+  text-align: center;
+}
+
+.bet-col {
+  font-size: 15pt;
 }
 
 img {
