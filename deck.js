@@ -4,313 +4,313 @@ const cardDeck = [{
     name: "ace",
     suit: "spade",
     points: 11,
-    img: "AS.jpg"
+    img: "/img/AS.jpg"
   },
   {
     name: "ace",
     suit: "heart",
     points: 11,
-    img: "AH.jpg"
+    img: "/img/AH.jpg"
   },
   {
     name: "ace",
     suit: "club",
     points: 11,
-    img: "AC.jpg"
+    img: "/img/AC.jpg"
   },
   {
     name: "ace",
     suit: "diamond",
     points: 11,
-    img: "AD.jpg"
+    img: "/img/AD.jpg"
   },
   {
     name: "king",
     suit: "spade",
     points: 10,
-    img: "KS.jpg"
+    img: "/img/KS.jpg"
   },
   {
     name: "king",
     suit: "heart",
     points: 10,
-    img: "KH.jpg"
+    img: "/img/KH.jpg"
   },
   {
     name: "king",
     suit: "club",
     points: 10,
-    img: "KC.jpg"
+    img: "/img/KC.jpg"
   },
   {
     name: "king",
     suit: "diamond",
     points: 10,
-    img: "KD.jpg"
+    img: "/img/KD.jpg"
   },
   {
     name: "queen",
     suit: "spade",
     points: 10,
-    img: "QS.jpg"
+    img: "/img/QS.jpg"
   },
   {
     name: "queen",
     suit: "heart",
     points: 10,
-    img: "QH.jpg"
+    img: "/img/QH.jpg"
   },
   {
     name: "queen",
     suit: "club",
     points: 10,
-    img: "QC.jpg"
+    img: "/img/QC.jpg"
   },
   {
     name: "queen",
     suit: "diamond",
     points: 10,
-    img: "QD.jpg"
+    img: "/img/QD.jpg"
   },
   {
     name: "jack",
     suit: "spade",
     points: 10,
-    img: "JS.jpg"
+    img: "/img/JS.jpg"
   },
   {
     name: "jack",
     suit: "heart",
     points: 10,
-    img: "JH.jpg"
+    img: "/img/JH.jpg"
   },
   {
     name: "jack",
     suit: "club",
     points: 10,
-    img: "JC.jpg"
+    img: "/img/JC.jpg"
   },
   {
     name: "jack",
     suit: "diamond",
     points: 10,
-    img: "JD.jpg"
+    img: "/img/JD.jpg"
   },
   {
     name: "ten",
     suit: "spade",
     points: 10,
-    img: "10S.jpg"
+    img: "/img/10S.jpg"
   },
   {
     name: "ten",
     suit: "heart",
     points: 10,
-    img: "10H.jpg"
+    img: "/img/10H.jpg"
   },
   {
     name: "ten",
     suit: "club",
     points: 10,
-    img: "10C.jpg"
+    img: "/img/10C.jpg"
   },
   {
     name: "ten",
     suit: "diamond",
     points: 10,
-    img: "10D.jpg"
+    img: "/img/10D.jpg"
   },
   {
     name: "nine",
     suit: "spade",
     points: 9,
-    img: "9S.jpg"
+    img: "/img/9S.jpg"
   },
   {
     name: "nine",
     suit: "heart",
     points: 9,
-    img: "9H.jpg"
+    img: "/img/9H.jpg"
   },
   {
     name: "nine",
     suit: "club",
     points: 9,
-    img: "9C.jpg"
+    img: "/img/9C.jpg"
   },
   {
     name: "nine",
     suit: "diamond",
     points: 9,
-    img: "9D.jpg"
+    img: "/img/9D.jpg"
   },
   {
     name: "eight",
     suit: "spade",
     points: 8,
-    img: "8S.jpg"
+    img: "/img/8S.jpg"
   },
   {
     name: "eight",
     suit: "heart",
     points: 8,
-    img: "8H.jpg"
+    img: "/img/8H.jpg"
   },
   {
     name: "eight",
     suit: "club",
     points: 8,
-    img: "8C.jpg"
+    img: "/img/8C.jpg"
   },
   {
     name: "eight",
     suit: "diamond",
     points: 8,
-    img: "8D.jpg"
+    img: "/img/8D.jpg"
   },
   {
     name: "seven",
     suit: "spade",
     points: 7,
-    img: "7S.jpg"
+    img: "/img/7S.jpg"
   },
   {
     name: "seven",
     suit: "heart",
     points: 7,
-    img: "7H.jpg"
+    img: "/img/7H.jpg"
   },
   {
     name: "seven",
     suit: "club",
     points: 7,
-    img: "7C.jpg"
+    img: "/img/7C.jpg"
   },
   {
     name: "seven",
     suit: "diamond",
     points: 7,
-    img: "7D.jpg"
+    img: "/img/7D.jpg"
   },
   {
     name: "six",
     suit: "spade",
     points: 6,
-    img: "6S.jpg"
+    img: "/img/6S.jpg"
   },
   {
     name: "six",
     suit: "heart",
     points: 6,
-    img: "6H.jpg"
+    img: "/img/6H.jpg"
   },
   {
     name: "six",
     suit: "club",
     points: 6,
-    img: "6C.jpg"
+    img: "/img/6C.jpg"
   },
   {
     name: "six",
     suit: "diamond",
     points: 6,
-    img: "6D.jpg"
+    img: "/img/6D.jpg"
   },
   {
     name: "five",
     suit: "spade",
     points: 5,
-    img: "5S.jpg"
+    img: "/img/5S.jpg"
   },
   {
     name: "five",
     suit: "heart",
     points: 5,
-    img: "5H.jpg"
+    img: "/img/5H.jpg"
   },
   {
     name: "five",
     suit: "club",
     points: 5,
-    img: "5C.jpg"
+    img: "/img/5C.jpg"
   },
   {
     name: "five",
     suit: "diamond",
     points: 5,
-    img: "5D.jpg"
+    img: "/img/5D.jpg"
   },
   {
     name: "four",
     suit: "spade",
     points: 4,
-    img: "4S.jpg"
+    img: "/img/4S.jpg"
   },
   {
     name: "four",
     suit: "heart",
     points: 4,
-    img: "4H.jpg"
+    img: "/img/4H.jpg"
   },
   {
     name: "four",
     suit: "club",
     points: 4,
-    img: "4C.jpg"
+    img: "/img/4C.jpg"
   },
   {
     name: "four",
     suit: "diamond",
     points: 4,
-    img: "4D.jpg"
+    img: "/img/4D.jpg"
   },
   {
     name: "three",
     suit: "spade",
     points: 3,
-    img: "3S.jpg"
+    img: "/img/3S.jpg"
   },
   {
     name: "three",
     suit: "heart",
     points: 3,
-    img: "3H.jpg"
+    img: "/img/3H.jpg"
   },
   {
     name: "three",
     suit: "club",
     points: 3,
-    img: "3C.jpg"
+    img: "/img/3C.jpg"
   },
   {
     name: "three",
     suit: "diamond",
     points: 3,
-    img: "3D.jpg"
+    img: "/img/3D.jpg"
   },
   {
     name: "two",
     suit: "spade",
     points: 2,
-    img: "2S.jpg"
+    img: "/img/2S.jpg"
   },
   {
     name: "two",
     suit: "heart",
     points: 2,
-    img: "2H.jpg"
+    img: "/img/2H.jpg"
   },
   {
     name: "two",
     suit: "club",
     points: 2,
-    img: "2C.jpg"
+    img: "/img/2C.jpg"
   },
   {
     name: "two",
     suit: "diamond",
     points: 2,
-    img: "2D.jpg"
+    img: "/img/2D.jpg"
   }
 ]
 
@@ -341,10 +341,12 @@ function sixDecks(array) {
 
 // ************ Global Variables ************ //
 
-
-const shuffledDeck = shuffle(cardDeck)
-const shuffledSixDecks = shuffle(sixDecks(shuffledDeck))
+const shuffledSixDecks = shuffle(sixDecks(cardDeck))
 const dealerTray = document.querySelector(".dealer-tray")
 const playerTray = document.querySelector(".player-tray")
 const playerTotal = document.querySelector(".player-total")
 const dealerTotal = document.querySelector(".dealer-total")
+
+document.querySelector(".token-total").innerHTML = JSON.parse(localStorage.getItem("myTokens")) ? JSON.parse(localStorage.getItem("myTokens")) : 500;
+
+document.querySelector(".bet-input").setAttribute("max", document.querySelector(".token-total").innerHTML)

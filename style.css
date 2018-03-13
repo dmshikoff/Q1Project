@@ -3,10 +3,10 @@ background: #31663C;
 height: 100vh;
 }
 
-.row {
+.player-row, .dealer-row, .deck-row {
   font-family: 'Lobster', cursive;
   font-weight: bold;
-  height: 33.3vh;
+  height: 26.7vh;
 }
 
 .dealer-col {
@@ -32,7 +32,22 @@ height: 100vh;
 }
 
 .bet-col {
+  text-align: center;
   font-size: 15pt;
+}
+
+.instruction-col {
+  font-size: 15pt;
+  color: yellow;
+}
+
+.ui-bar {
+  background: url("wood2.jpg");
+  border-radius: 20px;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 img {

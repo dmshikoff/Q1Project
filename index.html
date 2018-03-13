@@ -4,6 +4,11 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="slotTheme.css" />
+  <script defer src="odometer.js"></script>
   <link rel="stylesheet" href="style.css">
   <script defer type="text/javascript" src="deck.js"></script>
   <script defer type="text/javascript" src="deal.js"></script>
@@ -22,9 +27,9 @@
       </div>
     </div>
     <div class="row deck-row d-flex justify-content-end">
-      <div class="col-2 bet-col">
+      <div class="col-4 bet-col">
         <p>Blackjack pays 3:2</p>
-        <p>Player Token Total: <span class="token-total">500</span></p>
+        <p>Player Token Total: <span class="token-total"></span></p>
         <form class="bet-submission">
           <label>Bet Amount:
             <input type="number" name="bet-value" min="1" class="bet-input">
@@ -38,10 +43,8 @@
         <button type="button" name="draw" class="draw d-none">Deal</button>
       </div>
       <div class="col-4 deck-col">
-        <h2>Deck</h2>
-        <div class="deck-tray">
-          <img src="bicycleRed.png" alt="card-back">
-        </div>
+        <label>Deck</label>
+        <img src="bicycleRed.png" alt="cardback">
       </div>
     </div>
     <div class="row player-row">
@@ -61,6 +64,60 @@
             <h2>Player's Hand</h2>
             <p class="player-total"></p>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-10 ui-bar d-flex justify-content-between">
+        <div>
+          <p>Chips</p>
+        </div>
+        <div>
+          <p class="odometer">300</p>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary" data-toggle="modal" href="#helpModal">Help</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTitle">Blackjack Help</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+        </div>
+        <div class="modal-body">
+          <p><span class="bold">OVERVIEW</span><br> Equally well known as Twenty-One. The rules are simple, the play is thrilling, and there is opportunity for high strategy. But even for the casual participant who plays a reasonably good game, the casino
+            odds are less, making Blackjack one of the most attractive casino games for the player.<br><br>
+
+            <span class="bold">THE PACK</span><br> The standard 52-card pack is used, but the six-deck game (312 cards) is the most popular and is used in this game.<br><br>
+
+            <span class="bold">OBJECT OF THE GAME</span><br> The player attempts to beat the dealer by getting a card count as close to 21 as possible, without going over 21.<br><br>
+
+            <span class="bold">CARD VALUES/SCORING</span><br> Aces are worth 1 or 11, whichever does not break 21 points. Face cards are 10 and any other card is its pip value.<br><br>
+
+            <span class="bold">BETTING</span><br> Before the deal begins, the player places a bet, in chips. Minimum and maximum limits are established on the betting, for this game it ranges from $1 to $100.<br><br>
+
+            <span class="bold">THE DEAL</span><br> When the player has placed their bet, the dealer gives one card face up to the player and then one card face up to himself. Another round of cards is then dealt face up to the player, but the dealer takes
+            his second card face down. Thus, the player receives two cards face up, and the dealer receives one card face up and one card face down.<br><br>
+
+            <span class="bold">NATURALS</span><br> If a player's first two cards are an ace and a "ten-card" (a picture card or 10), giving him a count of 21 in two cards, this is a natural or "blackjack." If the player has a natural and the dealer does
+            not, the dealer immediately pays that player one and a half times the amount of his bet. If the dealer has a natural, he immediately collects the bet of the player who does not have a natural, (but no additional amount). If the dealer and
+            the player both have naturals, the bet of that player is a stand-off (a tie), and the player takes back his chips.<br><br>
+
+            <span class="bold">THE PLAY</span><br> The player goes first and must decide whether to "stand" (not ask for another card) or "hit" (ask for another card in an attempt to get closer to a count of 21, or even hit 21 exactly). Thus, the player
+            may stand on the two cards originally dealt him/her, or he/she may ask the dealer for additional cards, one at a time, until he/she either decides to stand on the total (if it is 21 or under), or goes "bust" (if it is over 21). In the latter
+            case, the player loses and the dealer collects the bet wagered.<br> The player can count an ace as a 1 or 11. If the player "hits" and creates a bust hand by counting the ace as an 11, the player simply counts the ace as a 1 and continues
+            playing by standing or "hitting" (asking the dealer for additional cards, one at a time).<br><br>
+
+            <span class="bold">THE DEALER'S PLAY</span><br> When the dealer has served the player, his/her face-down card is turned up. If the total is 17 or more, he/she must stand. If the total is 16 or under, he/she must take a card. He/She must continue
+            to take cards until the total is 17 or more, at which point the dealer must stand.<br>
+
+          </p>
         </div>
       </div>
     </div>

@@ -1,7 +1,11 @@
 // ************ Sub-Functions for Click event for Deal Cards ************ //
 
+
 function deal(tray, total, faceDown){
-  let newCard = (shuffledSixDecks.pop())
+  let persistingDeck = JSON.parse(localStorage.getItem("myDeck")) ? JSON.parse(localStorage.getItem("myDeck")) : shuffledSixDeck;
+  let newCard = (persistingDeck.pop())
+  const myDeck = JSON.stringify(persistingDeck)
+  localStorage.setItem("myDeck", myDeck)
   let card = document.createElement("img")
   if(faceDown){
     card.setAttribute("src", "bicycleRed.png")
@@ -61,8 +65,6 @@ document.querySelector(".draw").addEventListener("click", function(event) {
 // ************ Betting Functionality ************ //
 
 let betAmount;
-
-
 
 document.querySelector(".bet-submission").addEventListener("submit", function(event) {
   const tokenTotal = document.querySelector(".token-total")
