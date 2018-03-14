@@ -1,10 +1,10 @@
 // ************ Sub-Functions for Click event for Deal Cards ************ //
 
-
-function deal(tray, total, faceDown){
+function deal(tray, total, faceDown, placement, cardNumber){
   let persistingDeck = JSON.parse(localStorage.getItem("myDeck")) ? JSON.parse(localStorage.getItem("myDeck")) : shuffledSixDecks;
   let newCard = (persistingDeck.pop())
   const myDeck = JSON.stringify(persistingDeck)
+  // let deck = document.querySelector(cardNumber)
   localStorage.setItem("myDeck", myDeck)
   let card = document.createElement("img")
   if(faceDown){
@@ -16,8 +16,15 @@ function deal(tray, total, faceDown){
   }
   card.setAttribute("data", newCard.points)
   card.setAttribute("data-cName", newCard.name)
-  tray.appendChild(card)
   total.innerHTML = pointTotal(tray.children)
+  // deck.classList.add(placement)
+  // setTimeout(function() {
+  //   tray.appendChild(card)
+  //   deck.classList.add("d-none")
+  //   deck.classList.remove(placement)
+  //   deck.classList.remove("d-none")
+  // }, 250)
+  tray.appendChild(card)
 }
 
 function clear(){
@@ -34,26 +41,24 @@ document.querySelector(".draw").addEventListener("click", function(event) {
   const standButton = document.querySelector(".actionStand")
   const tokenTotal = document.querySelector(".odometer")
   const result = document.querySelector(".result")
+  const slider = document.querySelector(".slider")
+  let deck = document.querySelector(".dealCard")
+  slider.classList.add("d-none")
   clear(playerTray, result, dealerTray)
-  deal(playerTray, playerTotal, false)
+  deal(playerTray, playerTotal, false, "pDealtCard1", ".dealCard1")
   deal(dealerTray, dealerTotal, true)
-  deal(playerTray, playerTotal, false)
+  deal(playerTray, playerTotal, false, "pDealtCard2", ".dealCard2")
   deal(dealerTray, dealerTotal, false)
-  if (playerTray.childElementCount > 0) {
-    drawCard.classList.add("d-none")
-  }
-  else {
-    drawCard.classList.remove("d-none")
-  }
+  drawCard.classList.add("d-none")
   hitButton.classList.remove("d-none")
   standButton.classList.remove("d-none")
-  if (Number(playerTotal.innerHTML) === 21) {
+  if (Number(playerTotal.innerHTML) === 21 && Number(dealerTotal.innerHTML) !== 21) {
     result.innerHTML = "Player Blackjack!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + (Number(betAmount)*1.5)
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Math.ceil(betAmount(slider.value)*1.5)
     endOfHand()
   } else if (Number(dealerTotal.innerHTML) === 21 && Number(playerTotal.innerHTML) !== 21) {
     result.innerHTML = "Dealer Blackjack!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - Number(betAmount)
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - betAmount(slider.value)
     endOfHand()
   } else if (Number(dealerTotal.innerHTML) === 21 && Number(playerTotal.innerHTML) === 21) {
     result.innerHTML = "Push!!"
@@ -64,15 +69,21 @@ document.querySelector(".draw").addEventListener("click", function(event) {
 
 // ************ Betting Functionality ************ //
 
-let betAmount;
+// let betAmount;
 
-document.querySelector(".bet-submission").addEventListener("submit", function(event) {
-  const tokenTotal = document.querySelector(".odometer")
-  event.preventDefault()
-  betAmount = document.querySelector(".bet-input").value
-  document.querySelector(".bet-submission").classList.add("d-none")
-  document.querySelector(".sub-bet").innerHTML = "Your Bet: " + betAmount
-  document.querySelector(".bet-col").appendChild(document.querySelector(".sub-bet"))
-  document.querySelector(".draw").classList.remove("d-none")
-  document.querySelector(".bet-input").setAttribute("max", tokenTotal.innerHTML)
-})
+function betAmount(value){
+  let betAmount;
+  if(Number(value) === 1){
+    betAmount = 5
+  }
+  if(Number(value) === 34){
+    betAmount = 25
+  }
+  if(Number(value) === 67){
+    betAmount = 50
+  }
+  if(Number(value) === 100){
+    betAmount = 100
+  }
+  return betAmount
+}

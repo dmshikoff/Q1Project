@@ -25,25 +25,24 @@ function acesToOne(cards){
 function endOfHand() {
   const hitButton = document.querySelector(".actionHit")
   const standButton = document.querySelector(".actionStand")
-  const form = document.querySelector(".bet-submission")
   const dealerTray = document.querySelector(".dealer-tray")
   const submittedBet = document.querySelector(".sub-bet")
   const betInput = document.querySelector(".bet-input")
   const tokenTotal = document.querySelector(".odometer")
-
+  const deal = document.querySelector(".draw")
+  const slider = document.querySelector(".slider")
   hitButton.classList.add("d-none")
   standButton.classList.add("d-none")
-  form.classList.remove("d-none")
+  deal.classList.remove("d-none")
+  slider.classList.remove("d-none")
   let faceImg = dealerTray.firstElementChild.getAttribute("data-img")
   dealerTray.firstElementChild.setAttribute("src", faceImg)
-  submittedBet.innerHTML = ""
   // const myDeck = JSON.stringify(shuffledSixDecks)
   // localStorage.setItem("myDeck", myDeck)
   if(Number(tokenTotal.innerHTML) === 0){
     tokenTotal.innerHTML = 500
-    betInput.setAttribute("max", tokenTotal.innerHTML)
+    
   }
-  betInput.setAttribute("max", tokenTotal.innerHTML)
   const myTokens = JSON.stringify(tokenTotal.innerHTML)
   localStorage.setItem("myTokens", myTokens)
 }
@@ -67,14 +66,15 @@ function hit(tray, total) {
 document.querySelector(".hit").addEventListener("click", function(event) {
   const result = document.querySelector(".result")
   const tokenTotal = document.querySelector(".odometer")
+  const slider = document.querySelector(".slider")
   hit(playerTray, playerTotal)
   if (Number(playerTotal.innerHTML) === 21) {
     result.innerHTML = "Player Wins!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + betAmount(slider.value)
     endOfHand()
   } else if (Number(playerTotal.innerHTML) > 21) {
     result.innerHTML = "Player Bust!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - Number(betAmount)
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - betAmount(slider.value)
     endOfHand()
   }
 })
@@ -82,22 +82,23 @@ document.querySelector(".hit").addEventListener("click", function(event) {
 document.querySelector(".stand").addEventListener("click", function(event) {
   const result = document.querySelector(".result")
   const tokenTotal = document.querySelector(".odometer")
+  const slider = document.querySelector(".slider")
   while(Number(dealerTotal.innerHTML) < 17){
     hit(dealerTray, dealerTotal)
   }
   if(Number(dealerTotal.innerHTML) < Number(playerTotal.innerHTML) && [17,18,19,20].includes(Number(dealerTotal.innerHTML))){
     result.innerHTML = "Player Wins!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + betAmount(slider.value)
     endOfHand()
   }
   if(Number(dealerTotal.innerHTML) > Number(playerTotal.innerHTML) && Number(dealerTotal.innerHTML) < 21){
     result.innerHTML = "Dealer Wins!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - Number(betAmount)
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - betAmount(slider.value)
     endOfHand()
   }
   if(Number(dealerTotal.innerHTML) > 21){
     result.innerHTML = "Dealer Busts!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + Number(betAmount)
+    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + betAmount(slider.value)
     endOfHand()
   }
   if(Number(dealerTotal.innerHTML) === Number(playerTotal.innerHTML)){

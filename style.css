@@ -1,5 +1,6 @@
 .table-cont {
-background: #31663C;
+  background: url("black-paper2.png"), radial-gradient(farthest-corner at 600px 40px,
+        #79AA47 0%, #31663C 100%);
 height: 100vh;
 }
 
@@ -14,17 +15,24 @@ height: 100vh;
 }
 
 .title-col {
+  font-family: 'Casino Queen Normal';
+  font-weight: normal;
   text-align: center;
-  color: yellow;
-  font-size: 40pt;
+  color: #FFD70D;
+  font-size: 60pt;
 }
 
 .deck-col {
   text-align: center;
+  position: relative;
 }
 
 .player-container {
   text-align: center;
+}
+
+.player-total {
+color: transparent;
 }
 
 .player-title-line {
@@ -36,18 +44,63 @@ height: 100vh;
   font-size: 15pt;
 }
 
-.instruction-col {
-  font-size: 15pt;
-  color: yellow;
+
+
+.dealCard1, .dealCard2, .dealCard3, .dealCard4 {
+  top:0;
+  left:0;
+  position: absolute;
+  transition: all .5s ease;
+}
+
+.pDealtCard1 {
+  top: 214.78125px;
+  left: -564px;
+}
+
+.pDealtCard2 {
+  top: 214.78125px;
+  left: -434px;
+}
+
+.cardPlaceHolder {
+  background: transparent;
+  border: 3px solid white;
+  height: 150px;
+  width: 100px;
+  border-radius: 10px;
+  margin: 0 15px;
 }
 
 .ui-bar {
-  background: url("wood2.jpg");
+  background: url("redwood.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 20px;
+  box-shadow:
+    inset 0 3px 2px rgba(255,255,255,.22),
+    inset 0 -3px 2px rgba(0,0,0,.17),
+    inset 0 20px 10px rgba(255,255,255,.12);
+  height: 125px;
 }
 
 .bold {
   font-weight: bold;
+}
+
+.chip {
+  height: 100px;
+  width: 100px;
+  margin: 0;
+}
+
+.slideContainer {
+  width: 100%;
+  text-align: center;
+}
+
+.slider {
+  width: 80%;
 }
 
 img {
@@ -56,11 +109,15 @@ img {
   margin: 0 15px;
 }
 
-button {
-  font-size: 25px;
-  border: 1px solid black;
+.hit, .draw, .stand {
+  font-size: 60px;
+  border: transparent;
   border-radius: 30px;
-  padding: 15px;
+  height: 100%;
+  background: transparent;
+  font-family: 'Casino Queen Normal';
+  text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+  font-weight:300;
 }
 
 p {
@@ -69,5 +126,13 @@ p {
 
 .token-total {
   font-family: 'Casino Queen Normal';
-  font-size: 30pt;
+  text-shadow: rgba(255,255,255,0.5) 0px 3px 3px;
+  font-size: 55pt;
+  margin-bottom: -15px;
+  margin:0 15px;
+  color: black;
+}
+
+.total-cont {
+  /* width: 300px; */
 }
