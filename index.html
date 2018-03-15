@@ -69,16 +69,16 @@
           <img src="/chips/chip-50.png" alt="50DollarChip" class="chip">
           <img src="/chips/chip-100.png" alt="100DollarChip" class="chip">
           <div class="slideContainer">
-            <input type="range" min="1" max="100" value="1" step="33" class="slider" id="myRange">
+            <input type="range" min="1" max="100" value="1" step="33" class="slider betSlider" id="myRange">
           </div>
         </div>
         <div class="total-cont d-inline-flex justify-content-between align-items-center">
-          <button type="button" name="draw" class="draw">Deal</button>
-          <div class="actionHit d-none">
+          <button type="button" name="draw" class="draw dealCardsButton">Deal</button>
+          <div class="actionHit hitButton d-none">
             <button type="button" name="hit" class="hit">Hit</button>
           </div>
-          <p id="odometer" class="token-total odometer"></p>
-          <div class="actionStand d-none">
+          <p id="odometer" class="chipCount odometer"></p>
+          <div class="actionStand standButton d-none">
             <button type="button" name="stand" class="stand">Stand</button>
           </div>
         </div>
