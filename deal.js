@@ -1,6 +1,6 @@
 // ************ Sub-Functions for Click event for Deal Cards ************ //
 
-function deal(tray, total, faceDown, placement, cardNumber){
+function deal(tray, total, faceDown){
   let persistingDeck = JSON.parse(localStorage.getItem("myDeck")) ? JSON.parse(localStorage.getItem("myDeck")) : shuffledSixDecks;
   let newCard = (persistingDeck.pop())
   const myDeck = JSON.stringify(persistingDeck)
@@ -45,9 +45,9 @@ document.querySelector(".draw").addEventListener("click", function(event) {
   let deck = document.querySelector(".dealCard")
   slider.classList.add("d-none")
   clear(playerTray, result, dealerTray)
-  deal(playerTray, playerTotal, false, "pDealtCard1", ".dealCard1")
+  deal(playerTray, playerTotal, false)
   deal(dealerTray, dealerTotal, true)
-  deal(playerTray, playerTotal, false, "pDealtCard2", ".dealCard2")
+  deal(playerTray, playerTotal, false)
   deal(dealerTray, dealerTotal, false)
   drawCard.classList.add("d-none")
   hitButton.classList.remove("d-none")
