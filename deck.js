@@ -341,7 +341,15 @@ function sixDecks(array) {
 
 // ************ Global Variables ************ //
 
-const shuffledSixDecks = shuffle(sixDecks(cardDeck))
+if(!localStorage.getItem("myDeck")){
+  localStorage.setItem("myDeck", JSON.stringify(shuffle(sixDecks(cardDeck))))
+}
+else if(JSON.parse(localStorage.getItem("myDeck")).length === 0){
+  localStorage.setItem("myDeck", JSON.stringify(shuffle(sixDecks(cardDeck))))
+}
+
+
+// let shuffledSixDecks = shuffle(sixDecks(cardDeck))
 const dealerTray = document.querySelector(".dealer-tray")
 const playerTray = document.querySelector(".player-tray")
 const playerTotal = document.querySelector(".player-total")

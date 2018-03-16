@@ -23,7 +23,7 @@ function isAceValue11(element) {
 
 function endOfHand() {
   endOfHandSet()
-  saveToLocalStorage(shuffledSixDecks, "myDeck")
+  // saveToLocalStorage(shuffledSixDecks, "myDeck")
   saveToLocalStorage(document.querySelector(".chipCount").innerHTML, "myTokens")
   let faceImg = dealerTray.firstElementChild.getAttribute("data-img")
   dealerTray.firstElementChild.setAttribute("src", faceImg)
@@ -39,7 +39,7 @@ function accessLocalStorage(string, data) {
 
 function hitCard(deck) {
   let hitArray = []
-  let newCard = deck.pop()
+  let newCard = getCard(deck)
   hitArray.push(newCard)
   return hitArray
 }
@@ -67,10 +67,10 @@ document.querySelector(".hit").addEventListener("click", function(event) {
   render(
     playerTray,
     convertHitCardToImgArray(
-      hitCard(
-        accessLocalStorage("myDeck", shuffledSixDecks))), false)
+      hitCard("myDeck")), false)
 
   playerTotal.innerHTML = pointTotal(playerTray.children)
+  // saveToLocalStorage(shuffledSixDecks, "myDeck")
 
   if (Number(playerTotal.innerHTML) === 21) {
     document.querySelector(".result").innerHTML = "Player Wins!!"
@@ -84,30 +84,27 @@ document.querySelector(".hit").addEventListener("click", function(event) {
 })
 
 document.querySelector(".stand").addEventListener("click", function(event) {
-  const result = document.querySelector(".result")
-  const tokenTotal = document.querySelector(".odometer")
-  const slider = document.querySelector(".slider")
   while (Number(dealerTotal.innerHTML) < 17) {
-    hit(dealerTray, dealerTotal)
+    render(dealerTray, convertHitCardToImgArray(hitCard("myDeck")), false)
   }
   if (Number(dealerTotal.innerHTML) < Number(playerTotal.innerHTML) && [17, 18, 19, 20].includes(Number(dealerTotal.innerHTML))) {
-    result.innerHTML = "Player Wins!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + betAmount(slider.value)
+    document.querySelector(".result").innerHTML = "Player Wins!!"
+    document.querySelector(".chipCount").innerHTML = Number(document.querySelector(".chipCount").innerHTML) + betAmount(document.querySelector(".betSlider").value)
     endOfHand()
   }
   if (Number(dealerTotal.innerHTML) > Number(playerTotal.innerHTML) && Number(dealerTotal.innerHTML) < 21) {
-    result.innerHTML = "Dealer Wins!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) - betAmount(slider.value)
+    document.querySelector(".result").innerHTML = "Dealer Wins!!"
+    document.querySelector(".chipCount").innerHTML = Number(document.querySelector(".chipCount").innerHTML) - betAmount(document.querySelector(".betSlider").value)
     endOfHand()
   }
   if (Number(dealerTotal.innerHTML) > 21) {
-    result.innerHTML = "Dealer Busts!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML) + betAmount(slider.value)
+    document.querySelector(".result").innerHTML = "Dealer Busts!!"
+    document.querySelector(".chipCount").innerHTML = Number(document.querySelector(".chipCount").innerHTML) + betAmount(document.querySelector(".betSlider").value)
     endOfHand()
   }
   if (Number(dealerTotal.innerHTML) === Number(playerTotal.innerHTML)) {
-    result.innerHTML = "Push!!"
-    tokenTotal.innerHTML = Number(tokenTotal.innerHTML)
+    document.querySelector(".result").innerHTML = "Push!!"
+    document.querySelector(".chipCount").innerHTML = Number(document.querySelector(".chipCount").innerHTML)
     endOfHand()
   }
 })

@@ -5,23 +5,36 @@ function saveToLocalStorage(data, string) {
   localStorage.setItem(string, stringifiedData)
 }
 
-function accessLocalStorage(string, data) {
-  let persistingData = localStorage.getItem(string) ? JSON.parse(localStorage.getItem(string)) : data;
-  return persistingData
+// function accessLocalStorage(string, data) {
+//   let persistingData = localStorage.getItem(string) ? JSON.parse(localStorage.getItem(string)) : data;
+//   return persistingData
+// }
+
+function accessLocalStorage(string) {
+  return JSON.parse(localStorage.getItem(string))
 }
+
+function getCard(deck){
+  const data = accessLocalStorage(deck)
+  const retVal = data.pop()
+  saveToLocalStorage(data.filter(function(ele){return ele !== undefined}), deck)
+  return retVal
+}
+
 
 function dealCards(deck) {
   let handArray = []
-  let newCard = deck.pop()
+  let newCard = getCard(deck)
   handArray.push(newCard)
   if (handArray.length < 2) {
-    handArray.push(deck.pop())
+    handArray.push(getCard(deck))
   }
   return handArray
 }
 
 function convertDealCardToImgArray(faceDown, array) {
   let cardArray = []
+  console.log(array)
   for (let i of array) {
     let card = document.createElement("img")
     if (faceDown) {
@@ -55,22 +68,33 @@ function dealButtonSet() {
   document.querySelector(".dealCardsButton").classList.add("d-none")
   document.querySelector(".hitButton").classList.remove("d-none")
   document.querySelector(".standButton").classList.remove("d-none")
+
 }
 
 // ************ Click event for Deal Cards ************ //
 
 document.querySelector(".dealCardsButton").addEventListener("click", function(event) {
+  dealButtonSet()
+  clear(playerTray, dealerTray, dealerTotal, playerTotal, document.querySelector(".result"))
   render(
     playerTray,
     convertDealCardToImgArray(false,
-      dealCards(
-        accessLocalStorage("myDeck", shuffledSixDecks))),
+      dealCards("myDeck")),
     function(array) {
       document.querySelector(".player-total").innerHTML = pointTotal(array)
     }
   )
 
-  dealButtonSet()
+  render(
+    dealerTray,
+    convertDealCardToImgArray(true,
+      dealCards('myDeck')),
+    function(array) {
+      document.querySelector(".dealer-total").innerHTML = pointTotal(array)
+    }
+  )
+
+
   if (pointTotal(Array.from(dealerTray.children)) === 21 && pointTotal(Array.from(playerTray.children)) === 21) {
     document.querySelector(".result").innerHTML = "Push!!"
     document.querySelector(".chipCount").innerHTML = document.querySelector(".chipCount").innerHTML
