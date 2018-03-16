@@ -22,22 +22,21 @@ function getCard(deck){
 }
 
 
-function dealCards(deck) {
+function dealCards(deck, arrayOfFaces = [true,true]) {
   let handArray = []
-  let newCard = getCard(deck)
+  let newCard = Object.assign(getCard(deck), {showFace: arrayOfFaces[0]})
   handArray.push(newCard)
   if (handArray.length < 2) {
-    handArray.push(getCard(deck))
+    handArray.push(Object.assign(getCard(deck), {showFace: arrayOfFaces[1]}))
   }
   return handArray
 }
 
-function convertDealCardToImgArray(faceDown, array) {
+function convertDealCardToImgArray(array) {
   let cardArray = []
-  console.log(array)
   for (let i of array) {
     let card = document.createElement("img")
-    if (faceDown) {
+    if (!i.showFace) {
       card.setAttribute("src", "bicycleRed.png")
       card.setAttribute("data-img", i.img)
     } else {
@@ -78,8 +77,8 @@ document.querySelector(".dealCardsButton").addEventListener("click", function(ev
   clear(playerTray, dealerTray, dealerTotal, playerTotal, document.querySelector(".result"))
   render(
     playerTray,
-    convertDealCardToImgArray(false,
-      dealCards("myDeck")),
+    convertDealCardToImgArray(
+      dealCards("myDeck", [true, true])),
     function(array) {
       document.querySelector(".player-total").innerHTML = pointTotal(array)
     }
@@ -87,8 +86,8 @@ document.querySelector(".dealCardsButton").addEventListener("click", function(ev
 
   render(
     dealerTray,
-    convertDealCardToImgArray(true,
-      dealCards('myDeck')),
+    convertDealCardToImgArray(
+        dealCards('myDeck', [false, true])),
     function(array) {
       document.querySelector(".dealer-total").innerHTML = pointTotal(array)
     }
